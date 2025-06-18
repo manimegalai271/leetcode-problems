@@ -1,8 +1,8 @@
 class Solution {
     public String thousandSeparator(int n) {
-        if(n>=0 && n<=999)
+        if(n==0)
         {
-               return String.valueOf(n);
+            return String.valueOf(n);
         }
         String s="";
         int count=0;
