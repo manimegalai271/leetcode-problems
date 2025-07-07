@@ -6,7 +6,7 @@ class Solution {
         int maxprofit=profit;
         for(int i=0;i<prices.length;i++)
         {
-           if(prices[i]<=minprice)
+           if(prices[i]<minprice)
            {
                minprice=prices[i];
                profit=prices[i]-minprice;
