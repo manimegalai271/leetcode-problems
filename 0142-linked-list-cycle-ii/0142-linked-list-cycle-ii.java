@@ -11,17 +11,27 @@
  */
 public class Solution {
     public ListNode detectCycle(ListNode head) {
-        Set<ListNode>s = new HashSet();
-        ListNode th = head;
-        while(th != null)
+        ListNode slow = head,fast =head;
+        while(fast != null)
         {
-            if(s.contains(th))
+            fast = fast.next;
+            if(fast != null)
             {
-                return th;
+               fast = fast.next;
+               slow = slow.next;
             }
-            s.add(th);
-            th = th.next;
+            if(fast == slow)
+            {
+                slow = head;
+                while(slow != fast)
+                {
+                    slow = slow.next;
+                    fast = fast.next;
+                }
+                return slow;
+            }
         }
         return null;
     }
 }
+// TC-O(N) SC-O(1)
