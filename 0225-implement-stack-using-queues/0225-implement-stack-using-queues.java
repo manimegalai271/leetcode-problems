@@ -1,23 +1,27 @@
+import java.util.*;
+
 class MyStack {
-    Deque<Integer> d;
+
+    Deque<Integer> q;
+
     public MyStack() {
-        d = new ArrayDeque<>();
+        q = new ArrayDeque<>();
     }
     
     public void push(int x) {
-        d.addLast(x);
+        q.addLast(x);
     }
     
     public int pop() {
-        return d.removeLast();
+        return q.removeLast();
     }
     
     public int top() {
-        return d.peekLast();
+        return q.peekLast();
     }
     
     public boolean empty() {
-        return d.isEmpty();
+        return q.isEmpty();
     }
 }
 
