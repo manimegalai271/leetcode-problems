@@ -1,11 +1,7 @@
 class Solution {
+    int[] ans = new int[38];
     public int tribonacci(int n) {
-        int ans = trib(n);
-        return ans;
-    }
-    public int trib(int n)
-    {
-        if(n < 2)
+         if(n < 2)
         {
             return n;
         }
@@ -13,6 +9,11 @@ class Solution {
         {
             return 1;
         }
-        return trib(n-1) + trib(n-2)+ trib(n-3);
+        if(ans[n] !=0 )
+        {
+            return ans[n];
+        }
+        ans[n] = tribonacci(n-1) + tribonacci(n-2)+ tribonacci(n-3);
+        return ans[n];
     }
 }
