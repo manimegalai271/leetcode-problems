@@ -11,7 +11,9 @@ class Solution {
             return;
         }
         for(int i = start;i < candidates.length;i++)
-        {   if(i > start && candidates[i] == candidates[i-1])
+        {   
+            //if(candidates[i] > target)break;
+            if(i > start && candidates[i] == candidates[i-1])
             {
                 continue;
             }
@@ -21,9 +23,9 @@ class Solution {
         }
     }
     public List<List<Integer>> combinationSum2(int[] candidates, int target) {
+        Arrays.sort(candidates);
         List<List<Integer>> ans = new ArrayList<>();
         List<Integer> curr = new ArrayList<>();
-        Arrays.sort(candidates);
         backtrack(0,ans,curr,candidates,target);
         return ans;
     }
