@@ -1,33 +1,26 @@
 class Solution {
-    int[][] dp;
-
     public int uniquePaths(int m, int n) {
-        dp = new int[m][n];
-        return dfs(0, 0, m, n); // start from top-left
-    }
-
-    public int dfs(int i, int j, int m, int n) {
-        // Out of bounds
-        if (i < 0 || j < 0 || i >= m || j >= n) {
-            return 0;
+        int[][] arr = new int[m][n];
+        int i = 0;
+        for(int j = 0;j < n;j++)
+        {
+            arr[i][j] = 1;
         }
-
-        // If already computed
-        if (dp[i][j] > 0) {
-            return dp[i][j];
+        int q = 0;
+        for(int p=0;p < m;p++)
+        {
+            arr[p][q] = 1;
         }
-
-        // If reached bottom-right
-        if (i == m - 1 && j == n - 1) {
-            return 1;
+        for(int r = 1;r < m;r++)
+        {
+            for(int s = 1;s < n;s++)
+            {
+                if(arr[r][s] == 0)
+                {
+                    arr[r][s] = arr[r][s-1]+arr[r-1][s];
+                }
+            }
         }
-
-        // Move right and down
-        int right = dfs(i, j + 1, m, n);
-        int down = dfs(i + 1, j, m, n);
-
-        // Store result and return
-        dp[i][j] = right + down;
-        return dp[i][j];
+        return arr[m-1][n-1];
     }
 }
