@@ -1,26 +1,26 @@
 class Solution {
+    int[][] dps;
+    public int dp(int i,int j,int m,int n)
+    {
+        if(i<0 || j<0 || i>=m || j>=n)
+        {
+            return 0;
+        }
+        if(dps[i][j]>0)
+        {
+            return dps[i][j];
+        }
+        if(i == m-1 && j == n-1)
+        {
+            return 1;
+        }
+        int right = dp(i,j+1,m,n);
+        int down = dp(i+1,j,m,n);
+        dps[i][j] = right+down;
+        return dps[i][j];
+    }
     public int uniquePaths(int m, int n) {
-        int[][] arr = new int[m][n];
-        int i = 0;
-        for(int j = 0;j < n;j++)
-        {
-            arr[i][j] = 1;
-        }
-        int q = 0;
-        for(int p=0;p < m;p++)
-        {
-            arr[p][q] = 1;
-        }
-        for(int r = 1;r < m;r++)
-        {
-            for(int s = 1;s < n;s++)
-            {
-                if(arr[r][s] == 0)
-                {
-                    arr[r][s] = arr[r][s-1]+arr[r-1][s];
-                }
-            }
-        }
-        return arr[m-1][n-1];
+        dps = new int[m][n];
+        return dp(0,0,m,n);
     }
 }
