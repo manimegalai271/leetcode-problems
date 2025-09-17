@@ -6,7 +6,7 @@ class Solution {
             nums[i-1] = i;
         }
         List<List<Integer>> ans = new ArrayList<>();
-        backtrack(ans, new ArrayList<>(), nums, new boolean[nums.length]);
+        backtrack(ans, new ArrayList<>(), nums, new boolean[nums.length],k);
         int count = 0;
         String s = "";
         for(List<Integer> a:ans)
@@ -23,9 +23,13 @@ class Solution {
         return s;
 
     }
-    public static void backtrack(List<List<Integer>> ans, List<Integer> curr, int[] nums, boolean[] used) {
+    public static void backtrack(List<List<Integer>> ans, List<Integer> curr, int[] nums, boolean[] used,int k) {
         if (curr.size() == nums.length) {
             ans.add(new ArrayList<>(curr));
+            return;
+        }
+        if(ans.size() == k)
+        {
             return;
         }
         for (int i = 0; i < nums.length; i++) {
@@ -33,7 +37,7 @@ class Solution {
                 used[i] = true;
                 curr.add(nums[i]);
 
-                backtrack(ans, curr, nums, used);
+                backtrack(ans, curr, nums, used,k);
 
                 curr.remove(curr.size() - 1);
                 used[i] = false;
