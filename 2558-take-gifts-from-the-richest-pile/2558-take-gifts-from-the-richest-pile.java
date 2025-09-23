@@ -1,18 +1,20 @@
 class Solution {
     public long pickGifts(int[] gifts, int k) {
-        int n = gifts.length-1;
+        PriorityQueue<Integer> maxheap = new PriorityQueue<>((a,b) ->(b-a));
+        for(int gift:gifts)
+        {
+            maxheap.add(gift);
+        }
         while(k-- != 0)
-        {   
-            Arrays.sort(gifts);
-            gifts[n] = (int)Math.sqrt(gifts[n]);
+        {
+            maxheap.add((int)Math.floor(Math.sqrt(maxheap.poll())));
         }
         long ans = 0;
-        for(int i = 0;i < gifts.length;i++)
+        while(maxheap.size() > 0)
         {
-           ans += (long)gifts[i];
+           ans += (long)maxheap.poll();
         }
         return ans;
+
     }
 }
-//Brute Force Approach
-//Time Complexity - o(nlogn * k)
