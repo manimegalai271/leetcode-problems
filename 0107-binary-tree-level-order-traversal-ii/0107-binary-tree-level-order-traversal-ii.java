@@ -38,11 +38,13 @@ class Solution {
             }
             ans.add(curr);
         }
-        List<List<Integer>> l = new ArrayList<>();
-        for(int i = ans.size()-1;i>=0;i--)
-        {
-            l.add(ans.get(i));
-        }
-        return l;
+        // List<List<Integer>> l = new ArrayList<>();
+        // for(int i = ans.size()-1;i>=0;i--)
+        // {
+        //     l.add(ans.get(i));
+        // }
+        // return l;
+        Collections.reverse(ans);
+        return ans;
     }
 }
