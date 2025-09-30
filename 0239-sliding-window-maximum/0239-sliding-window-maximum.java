@@ -1,29 +1,35 @@
 class Solution {
     public int[] maxSlidingWindow(int[] nums, int k) {
         int n = nums.length;
-        if (n == 0 || k == 0) return new int[0];
-
-        int[] result = new int[n - k + 1];
-            Queue<Integer> dq = new ArrayDeque<>(); // stores indices
-
-        for (int i = 0; i < n; i++) {
-            // Remove indices that are out of current window
-            if (!dq.isEmpty() && dq.peekFirst() <= i - k) {
-                dq.pollFirst();
-            }
-
-            // Maintain decreasing order in deque
-            while (!dq.isEmpty() && nums[dq.peekLast()] <= nums[i]) {
-                dq.pollLast();
-            }
-
-            dq.offerLast(i);
-
-            // Store max value when window size is reached
-            if (i >= k - 1) {
-                result[i - k + 1] = nums[dq.peekFirst()];
-            }
+        if(k == 1 || n == 1)
+        {
+            return nums;
         }
-        return result;
+        int[] ans = new int[n - k + 1];
+        Deque<Integer> q = new ArrayDeque<>();
+        for(int i = 0;i < k;i++)
+        {
+            while(!q.isEmpty() && nums[q.peekLast()] <= nums[i])
+            {
+                q.pollLast();
+            }
+            q.offerLast(i);
+        }
+        int j = 0;
+        ans[j++] = nums[q.peekFirst()];
+        for(int i = k;i < n;i++)
+        {   
+            while(!q.isEmpty() && q.peekFirst() <= i-k)
+            {
+                q.pollFirst();
+            }
+            while(!q.isEmpty() && nums[q.peekLast()] <= nums[i])
+            {
+                q.pollLast();
+            }
+            q.offerLast(i);
+            ans[j++] = nums[q.peekFirst()];
+        }
+        return ans;
     }
 }
