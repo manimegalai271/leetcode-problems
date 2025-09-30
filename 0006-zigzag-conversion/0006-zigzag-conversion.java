@@ -29,3 +29,4 @@ class Solution {
     }
 }
 //Time complexity - o(n)
+//space complexity - o(n)
