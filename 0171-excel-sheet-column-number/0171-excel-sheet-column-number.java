@@ -4,9 +4,9 @@ class Solution {
         int ans = 0;
         for(int i = 0;i < n;i++)
         {
-            char c = columnTitle.charAt(n - i - 1);
+            char c = columnTitle.charAt(i);
             int val = c - 'A' + 1;
-            ans += val * Math.pow(26,i);
+            ans = ans * 26 + val;
         }
         return ans;
     }
