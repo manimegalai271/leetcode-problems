@@ -12,3 +12,5 @@ class Solution {
         return ans.reverse().toString();
     }
 }
+//optimize apporach
+//Time complexity - o(log26)
