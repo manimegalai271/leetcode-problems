@@ -9,4 +9,4 @@ class Solution {
     }
 }
 //tc - o(n)
-//sc - o(1)
+//sc - o(n)
