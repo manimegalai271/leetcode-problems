@@ -4,8 +4,7 @@ class Solution {
         int size = 0;
         for(String ss: s.split(" "))
         {
-            String org = ss;
-            size = org.length();
+            size = ss.length();
         }
         return size;
     }
