@@ -9,3 +9,6 @@ class Solution {
         return size;
     }
 }
+//Brute force apporach
+//Tc - o(n)
+//SC - o(n)
