@@ -1,22 +1,32 @@
 class Solution {
     public int searchInsert(int[] nums, int target) {
-        int[] num = new int[nums.length+1];
+        List<Integer> l = new ArrayList<>();
         for(int i = 0;i < nums.length;i++)
         {
-            num[i] = nums[i];
+             l.add(nums[i]);
         }
         for(int i = 0;i < nums.length;i++)
-        {
+        {   
             if(nums[i] == target)
             {
                 return i;
             }
         }
-        num[nums.length] = target;
-        Arrays.sort(num);
-        for(int i = 0;i < num.length;i++)
+        if(l.get(0) > target)l.add(0,target);
+        for(int i = 0;i < l.size()-1;i++)
+        {   
+            if(l.get(i) < target && l.get(i+1) > target)
+            {
+                l.add(i+1,target);
+            }
+        }
+        if(l.size() == nums.length)
         {
-            if(num[i] == target)
+            l.add(target);
+        }
+        for(int i = 0;i < l.size();i++)
+        {
+            if(l.get(i) == target)
             {
                 return i;
             }
@@ -25,4 +35,5 @@ class Solution {
     }
 }
 //Brute Force Apporach
-//Time Complexity = O(nlogn)
+//Time Complexity = O(n)
+//Space Complexity = o(n)
