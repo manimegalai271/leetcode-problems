@@ -23,3 +23,6 @@ class Solution {
         return maxArea;
     }
 }
+//Time: O((m²) × (n²)) — Four nested loops \U0001f629
+
+//Space: O(1)
