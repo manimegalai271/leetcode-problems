@@ -1,35 +1,48 @@
 class Solution {
-    public int splitArray(int[] nums, int k) {
-        int low = 0, high = 0;
-        for (int n : nums) {
-            low = Math.max(low, n);
-            high += n;
-        }
-
-        while (low < high) {
-            int mid = low + (high - low) / 2;
-            if (canSplit(nums, k, mid)) {
-                high = mid; // try smaller max
-            } else {
-                low = mid + 1; // need bigger max
+    public int subarray(int mid,int[] nums)
+    {  
+        int sum = 0;
+        int count = 0;
+        for(int i = 0;i < nums.length;i++)
+        {
+            if(sum+nums[i] <= mid)
+            {
+                sum += nums[i]; 
+            }
+            else 
+            {
+                count++;
+                sum = nums[i];
             }
         }
-        return low;
+        count++;
+        return count;
+
     }
-
-    private boolean canSplit(int[] nums, int k, int maxSum) {
-        int count = 1; // at least one subarray
-        int currentSum = 0;
-
-        for (int n : nums) {
-            if (currentSum + n > maxSum) {
-                count++; // new subarray
-                currentSum = n;
-                if (count > k) return false;
-            } else {
-                currentSum += n;
+    public int splitArray(int[] nums, int k) {
+        int left = 0;
+        int right = 0;
+        int n = nums.length;
+        for(int i = 0;i < nums.length;i++)
+        {
+            left = Math.max(left,nums[i]);
+            right += nums[i];
+        }
+        int ans = 0;
+        while(left <= right)
+        {
+            int mid = (left + right) / 2;
+            int count = subarray(mid,nums); 
+            if(count <= k)
+            {
+                ans = mid;
+                right = mid - 1;
+            }
+            else 
+            {
+                left = mid + 1;
             }
         }
-        return true;
+        return ans;
     }
 }
