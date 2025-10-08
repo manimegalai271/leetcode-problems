@@ -1,22 +1,15 @@
-import java.util.*;
-
 class Solution {
     public int removeDuplicates(int[] nums) {
-        // Use TreeSet to keep unique elements in sorted (ascending) order
-        Set<Integer> set = new TreeSet<>();
-        
-        // Add all elements to set
-        for (int n : nums) {
-            set.add(n);
+        Set<Integer> s = new HashSet<>();
+        for(int i = 0;i < nums.length;i++)
+        {
+            s.add(nums[i]);
         }
-
-        // Copy back unique sorted elements to nums[]
         int k = 0;
-        for (int n : set) {
-            nums[k++] = n;
+        for(int set:s)
+        {
+            nums[k++] = set;
         }
-
-        // Return the number of unique elements
-        return k;
+        return s.size();
     }
 }
