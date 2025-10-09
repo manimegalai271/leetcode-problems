@@ -20,3 +20,6 @@ class Solution {
         return ans;
     }
 }
+//optimization 
+//Time Complexity = o(n)
+//Space complexity = o(1)
