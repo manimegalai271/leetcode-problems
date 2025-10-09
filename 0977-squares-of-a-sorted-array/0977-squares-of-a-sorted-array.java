@@ -9,3 +9,6 @@ class Solution {
         return nums;
     }
 }
+//Brute force apporach
+//Time complexity = o(nlogn)
+//space complexity = o(1)
