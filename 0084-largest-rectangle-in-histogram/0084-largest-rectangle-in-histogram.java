@@ -3,7 +3,6 @@ class Solution {
       int n = heights.length;
         Stack<Integer> stack = new Stack<>();
         int maxArea = 0;
-
         for (int i = 0; i <= n; i++) {
             int h = (i == n) ? 0 : heights[i];
             while (!stack.isEmpty() && h < heights[stack.peek()]) {
