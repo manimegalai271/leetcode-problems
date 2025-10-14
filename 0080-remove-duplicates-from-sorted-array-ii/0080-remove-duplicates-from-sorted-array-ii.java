@@ -1,17 +1,29 @@
 class Solution {
     public int removeDuplicates(int[] nums) {
-        int i = 0;
-        for(int e:nums)
+        Map<Integer,Integer> map = new LinkedHashMap<>();
+        for(int i = 0;i < nums.length;i++)
         {
-            if(i == 0 || i == 1 || nums[i - 2] != e)
+            if(map.containsKey(nums[i]))
             {
-                nums[i] = e;
-                i++;
+                map.put(nums[i],map.get(nums[i]) + 1);
+            }
+            else 
+            {
+                map.put(nums[i],1);
             }
         }
-        return i;
+        int index = 0;
+        for(int m:map.keySet())
+        {   
+            int freq = Math.min(2,map.get(m));
+            for(int i = 0;i < freq;i++)
+            {
+                nums[index++] = m;
+            }
+        }
+        return index;
     }
 }
-//optimal soloution
+//Brute force apporach
 //Time complexity = o(n)
-//Space complexity = o(1)
+//Space complexity = o(n)
