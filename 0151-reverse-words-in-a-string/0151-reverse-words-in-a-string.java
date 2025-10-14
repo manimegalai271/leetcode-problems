@@ -15,5 +15,5 @@ class Solution {
 }
 //optimize 
 //Time = o(n) 
-//space = o(n) ans string
+//space = o(n) ch  string
 
