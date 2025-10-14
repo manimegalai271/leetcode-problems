@@ -12,3 +12,6 @@ class Solution {
         return i;
     }
 }
+//optimal soloution
+//Time complexity = o(n)
+//Space complexity = o(1)
