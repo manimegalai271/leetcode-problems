@@ -1,13 +1,19 @@
 class Solution {
     public String reverseWords(String s) {
-        String ans = "";
-        for (String ss : s.split("\\s+")) { 
-            ans = ss + " " + ans;
+        StringBuilder sb = new StringBuilder();
+        String[] ch = s.trim().split("\\s+");
+        for(int i = ch.length-1;i >= 0; i--)
+        {
+            sb.append(ch[i]);
+            if(i > 0)
+            {
+                sb.append(" ");
+            }
         }
-        return ans.trim();
+        return sb.toString();
     }
 }
-//Brute force 
-//Time = o(n^2) because of o(n) take that full string and another o(n) work on create a new string in each time
-//space = o(n) ans string creation
+//optimize 
+//Time = o(n) 
+//space = o(n) ans string
 
