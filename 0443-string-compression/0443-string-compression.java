@@ -5,22 +5,21 @@ class Solution {
             return 1;
         }
         int count = 1;
-        String s = new String(chars);
         String ans = "";
-        for(int i = 1;i < s.length();i++)
+        for(int i = 1;i < chars.length;i++)
         {
-            if(s.charAt(i-1) == s.charAt(i))
+            if(chars[i-1] == chars[i])
             {
                 count++;
             }
             else 
             {
-                ans = ans+s.charAt(i-1);
+                ans = ans+ chars[i-1];
                 if(count > 1)ans += count;
                 count = 1;
             }
         }
-        ans = ans + s.charAt(s.length()-1);
+        ans = ans + chars[chars.length-1];
         if(count > 1)ans += count;
         char[] ch = ans.toCharArray();
         for(int i = 0;i < ch.length;i++)
