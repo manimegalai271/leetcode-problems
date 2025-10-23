@@ -22,7 +22,11 @@ class Solution {
         }
         ans = ans + s.charAt(s.length()-1);
         if(count > 1)ans += count;
-        chars = ans.toCharArray();
-        return chars.length;
+        char[] ch = ans.toCharArray();
+        for(int i = 0;i < ch.length;i++)
+        {
+            chars[i] = ch[i];
+        }
+        return ch.length;
     }
 }
