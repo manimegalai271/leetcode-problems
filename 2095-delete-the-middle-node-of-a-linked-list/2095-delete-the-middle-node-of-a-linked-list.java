@@ -10,25 +10,28 @@
  */
 class Solution {
     public ListNode deleteMiddle(ListNode head) {
-        if(head == null && head.next == null)
-        {
+        if (head == null || head.next == null) {
             return null;
         }
-        ListNode temp = head;
+
+        // Step 1: Count nodes
         int count = 0;
-        while(temp != null)
-        {
+        ListNode temp = head;
+        while (temp != null) {
             count++;
             temp = temp.next;
         }
-        int i = 0;
+
+        // Step 2: Find node before the middle
+        int mid = count / 2;
         ListNode t = head;
-        while(t != null && i < (count / 2)-1)
-        {
+        for (int i = 0; i < mid - 1; i++) {
             t = t.next;
-            i++;
         }
+
+        // Step 3: Delete the middle node
         t.next = t.next.next;
+
         return head;
     }
 }
