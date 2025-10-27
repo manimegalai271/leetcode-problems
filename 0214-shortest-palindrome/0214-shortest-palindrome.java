@@ -1,34 +1,35 @@
 class Solution {
     public String shortestPalindrome(String s) {
+        int n = s.length();
         String rev = new StringBuilder(s).reverse().toString();
-        String combined = s + "#" + rev;
-        int[] lps = computeLPS(combined);
-
-        // Characters after the longest palindromic prefix
-        String suffix = s.substring(lps[combined.length() - 1]);
-        return new StringBuilder(suffix).reverse().toString() + s;
-    }
-
-    // KMP preprocessing to compute LPS array
-    private int[] computeLPS(String str) {
-        int n = str.length();
-        int[] lps = new int[n];
-        int len = 0;
-        int i = 1;
-        while (i < n) {
-            if (str.charAt(i) == str.charAt(len)) {
-                len++;
-                lps[i] = len;
+        String org = s;
+        String ss = org + "*" + rev;
+        int i = 0;
+        int j = 1;
+        int[] lps = new int[n * 2 + 1];
+        while(j < ss.length())
+        {
+            if(ss.charAt(i) == ss.charAt(j))
+            {   
+                lps[j] = i + 1;
                 i++;
-            } else {
-                if (len != 0) {
-                    len = lps[len - 1];
-                } else {
-                    lps[i] = 0;
-                    i++;
+                j++;
+            }
+            else 
+            {
+                if(i > 0)
+                {
+                    i = lps[i - 1];
+                }
+                else 
+                {   
+                    lps[j] = 0;
+                    j++;
                 }
             }
         }
-        return lps;
+        int diff = n - lps[n * 2];
+        org = rev.substring(0,diff) + org;
+        return org;
     }
 }
