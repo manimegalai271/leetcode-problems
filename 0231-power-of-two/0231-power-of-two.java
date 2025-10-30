@@ -1,5 +1,14 @@
 class Solution {
     public boolean isPowerOfTwo(int n) {
-        return n>=1 && Integer.MIN_VALUE%n==0;
+        if(n == 0 || n < 1)return false;
+        if(n == 1)return true;
+        if(1073741824 % n == 0)
+        {
+            return true;
+        }
+        else 
+        {
+            return false;
+        }
     }
 }
