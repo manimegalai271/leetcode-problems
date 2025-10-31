@@ -1,14 +1,18 @@
 class Solution {
     public boolean isPowerOfTwo(int n) {
-        if(n == 0 || n < 1)return false;
-        if(n == 1)return true;
-        if(1073741824 % n == 0)
+        int count = 0;
+        int org = n;
+        if(n == 0)return false;
+        while(n % 2 == 0)
+        {
+            n /= 2;
+            count++;
+        }
+        int ans = (int)Math.pow(2,count);
+        if(ans == org)
         {
             return true;
         }
-        else 
-        {
-            return false;
-        }
+        return false;
     }
 }
