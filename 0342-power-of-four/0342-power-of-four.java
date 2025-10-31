@@ -1,14 +1,18 @@
 class Solution {
     public boolean isPowerOfFour(int n) {
+        int count = 0;
+        int org = n;
         if(n == 0)return false;
-        if(n == 1)return true;
-        if(1073741824 % n == 0 && (n % 10 == 4 || n % 10 == 6))
+        while(n % 4 == 0)
+        {
+            n /= 4;
+            count++;
+        }
+        int ans = (int)Math.pow(4,count);
+        if(ans == org)
         {
             return true;
         }
-        else 
-        {
-            return false;
-        }
+        return false;
     }
 }
