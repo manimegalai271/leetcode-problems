@@ -13,3 +13,5 @@ class Solution {
         return (char)(countt - counts);
     }
 }
+//time complexity = o(n)
+//space complexity = O(1)
