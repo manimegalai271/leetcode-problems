@@ -9,3 +9,6 @@ class Solution {
         return ones;
     }
 }
+//optimize solution
+//Time  = o(32) 32-fixed size o(1)
+//space = o(1)
