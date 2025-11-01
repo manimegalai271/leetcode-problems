@@ -22,3 +22,6 @@ class Solution {
         return 0;
     }
 }
+//Brute force apporach 
+//Time complexity = o(n)
+//space complexity = o(n)
