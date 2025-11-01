@@ -1,23 +1,23 @@
 class Solution {
     public int hammingWeight(int n) {
-        String s = "";
+        StringBuilder sb = new StringBuilder();
     	if(n == 1)
     	{
     		return 1;
     	}
     	while(n > 1)
     	{
-    		s = n % 2 + s;
+    		sb.append(n % 2);
     		n = n / 2;
     	}
     	if(n == 1)
     	{
-    		s = '1' + s;
+    		sb.append('1');
     	}
     	int count = 0;
-    	for(int i = 0;i < s.length();i++)
+    	for(int i = 0;i < sb.length();i++)
     	{
-    		if(s.charAt(i) == '1')
+    		if(sb.charAt(i) == '1')
     		{
     			count++;
     		}
