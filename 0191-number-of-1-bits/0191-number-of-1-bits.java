@@ -26,5 +26,5 @@ class Solution {
     }
 }
 //Brute force apporach
-//Time complexity = o((logn)^2)
+//Time complexity = o(logn)
 //space complexity = o(logn)
