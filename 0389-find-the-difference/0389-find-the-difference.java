@@ -16,6 +16,3 @@ class Solution {
         return st.charAt(0);
     }
 }
-//brute force apporach
-//Time complexity = o(n^2)
-//space complexity = o(n)
