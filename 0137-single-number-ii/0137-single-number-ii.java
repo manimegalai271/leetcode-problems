@@ -1,27 +1,12 @@
 class Solution {
     public int singleNumber(int[] nums) {
-        Map<Integer,Integer> freq = new HashMap<>();
-        for(int i = 0;i < nums.length;i++)
+        int ones = 0;
+        int twos = 0;
+        for(int num:nums)
         {
-            if(freq.containsKey(nums[i]))
-            {
-                freq.put(nums[i],freq.get(nums[i]) + 1);
-            }
-            else 
-            {
-                freq.put(nums[i],1);
-            }
+            ones = (ones ^ num) & (~twos);
+            twos = (twos ^ num) & (~ones);
         }
-        for(int key:freq.keySet())
-        {
-            if(freq.get(key) == 1)
-            {
-                return key;
-            }
-        }
-        return 0;
+        return ones;
     }
 }
-//Brute force apporach 
-//Time complexity = o(n)
-//space complexity = o(n)
