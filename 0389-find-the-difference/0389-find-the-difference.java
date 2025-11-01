@@ -1,21 +1,15 @@
 class Solution {
     public char findTheDifference(String s, String t) {
-        StringBuilder st = new StringBuilder(t);
+        int counts = 0;
+        int countt = 0;
         for(int i = 0;i < s.length();i++)
         {
-            char ch = s.charAt(i);
-            for(int j = 0;j < st.length();j++)
-            {
-                if(st.charAt(j) == ch)
-                {
-                    st.deleteCharAt(j);
-                    break;
-                }
-            }
+            counts += s.charAt(i);
         }
-        return st.charAt(0);
+        for(int i = 0;i < t.length();i++)
+        {
+            countt += t.charAt(i);
+        }
+        return (char)(countt - counts);
     }
 }
-//Brute force apporach
-//Time complexity = o(n ^ 2)
-//space complexity = o(n)
