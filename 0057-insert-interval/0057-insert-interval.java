@@ -20,3 +20,5 @@ class Solution {
         return ans.toArray(new int[ans.size()][]);
     }
 }
+//Tc = O(n)
+//sc = o(n)
