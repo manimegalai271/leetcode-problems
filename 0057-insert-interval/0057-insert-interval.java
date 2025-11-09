@@ -17,7 +17,7 @@ class Solution {
         {
             ans.add(intervals[index++]);
         }
-        return ans.toArray(new int[ans.size()][]);
+        return ans.toArray(new int[ans.size()][1]);
     }
 }
 //Tc = O(n)
