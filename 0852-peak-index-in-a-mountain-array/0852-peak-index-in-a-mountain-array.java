@@ -15,3 +15,6 @@ class Solution {
         return curr;
     }
 }
+//Brute force apporach
+//Time complexity = o(n)
+//Space complexity = o(1)
