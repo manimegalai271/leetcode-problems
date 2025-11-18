@@ -1,7 +1,6 @@
 class Solution {
     public int peakIndexInMountainArray(int[] arr) {
         int curr = 0;
-        int next = 0;
         for(int i = 1;i < arr.length;i++)
         {
             if(arr[curr] < arr[i])
