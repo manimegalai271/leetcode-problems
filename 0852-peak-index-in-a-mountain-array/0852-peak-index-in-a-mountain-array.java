@@ -1,20 +1,19 @@
 class Solution {
     public int peakIndexInMountainArray(int[] arr) {
-        int curr = 0;
-        for(int i = 1;i < arr.length;i++)
+        int left = 0;
+        int right = arr.length - 1;
+        while(left < right)
         {
-            if(arr[curr] < arr[i])
+            int mid = left + (right - left) / 2;
+            if(arr[mid] < arr[mid + 1])
             {
-                curr = i;
+                left = mid + 1;
             }
             else 
             {
-                return curr;
+                right = mid;
             }
         }
-        return curr;
+        return left;
     }
 }
-//Brute force apporach
-//Time complexity = o(n)
-//Space complexity = o(1)
