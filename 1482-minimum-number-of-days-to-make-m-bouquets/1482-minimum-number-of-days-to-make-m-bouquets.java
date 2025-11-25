@@ -50,3 +50,4 @@ class Solution {
         return bouquets;
     }
 }
+//Time complexity = o(N log(Max(bloomDay)))
