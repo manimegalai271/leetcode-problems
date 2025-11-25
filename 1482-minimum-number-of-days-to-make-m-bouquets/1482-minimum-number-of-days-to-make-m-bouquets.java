@@ -1,41 +1,52 @@
 class Solution {
-    public int getNumberOfBouqets(int[] bloomDay, int mid, int k) {
-        int numberOfBouqets = 0;
-        int count = 0;
-        for (int i=0; i < bloomDay.length; i++) {
-            if (bloomDay[i] <= mid) {
-                count++;
-            }else{
-                count=0;
-            }
-
-            if (count==k) {
-                numberOfBouqets++;
-                count=0;
-            }
-        }
-        return numberOfBouqets;
-
-    }
-
     public int minDays(int[] bloomDay, int m, int k) {
-        int low=0, high=0;
-        for (int day: bloomDay) {
-            high = Math.max(high, day);
-        }
-
-        int minDays= -1;
-        while (low <= high) {
-            int mid = (low + high) / 2;
-            
-            if (getNumberOfBouqets(bloomDay, mid, k) >= m) {
-                minDays = mid;
-                high = mid-1;
-            } else {
-                low = mid+1;
+        int low = 0;
+        int high = 0;
+        int max = 0;
+        for(int i = 0;i < bloomDay.length;i++)
+        {
+            if(max < bloomDay[i])
+            {
+                max = bloomDay[i];
             }
         }
-        
-        return minDays;
+        high = max;
+        int bouquetsdays = -1;
+        while(low <= high)
+        {
+            int mid = low + (high - low)/2;
+            if(hmanybmake(bloomDay,k,mid) >= m)
+            {
+                bouquetsdays = mid;
+                high = mid -1;
+            }
+            else 
+            {
+                low = mid + 1;
+            }
+        }
+        return bouquetsdays;
+    }
+    public int hmanybmake(int[] bloomDay,int k,int mid)
+    {
+        int count = 0;
+        int bouquets = 0;
+        for(int i = 0;i < bloomDay.length;i++)
+        {
+            if(bloomDay[i] <= mid)
+            {
+                count++;
+            }
+            else 
+            {
+                count = 0;
+            }
+            if(count == k)
+            {
+                bouquets++;
+                count = 0;
+            }
+        }
+        return bouquets;
     }
 }
