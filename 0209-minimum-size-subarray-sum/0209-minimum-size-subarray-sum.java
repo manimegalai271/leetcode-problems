@@ -2,20 +2,14 @@ class Solution {
     public int minSubArrayLen(int target, int[] nums) {
         int low = 0;
         int high = 0;
-        int windowsize = 0;
+        int windowsize = Integer.MAX_VALUE;
         int sum = 0;
-        Boolean flag = false;
         while(high < nums.length)
         {
             sum += nums[high];
             while(sum >= target)
             {
                 int ws = high - low + 1;
-                if(!flag)
-                {
-                    windowsize = ws;
-                    flag = true;
-                }
                 if(windowsize > ws)
                 {
                     windowsize = ws;
@@ -28,6 +22,6 @@ class Solution {
                 high++;
             }
         }
-        return windowsize;
+        return windowsize == Integer.MAX_VALUE ?0:windowsize;
     }
 }
