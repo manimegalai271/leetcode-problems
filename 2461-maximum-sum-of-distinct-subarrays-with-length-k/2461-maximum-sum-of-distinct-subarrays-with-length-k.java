@@ -5,7 +5,6 @@ class Solution {
         int high = 0;
         long sum = 0;
         Map<Integer,Integer> freq = new HashMap<>();
-
         while(high < nums.length)
         {
             sum += nums[high];
@@ -17,19 +16,14 @@ class Solution {
             {
                 freq.put(nums[high],1);
             }
-
             int window_size = high - low + 1;
-
             if(window_size == k)
             {
                 int freq_size = freq.size();
-
                 if(freq_size == k)
                 {
                     max_sum = Math.max(max_sum,sum);
                 }
-
-                // shrink window (this was missing earlier)
                 sum -= nums[low];
                 if(freq.get(nums[low]) == 1)
                 {
@@ -37,14 +31,13 @@ class Solution {
                 }
                 else 
                 {
-                    freq.put(nums[low],freq.get(nums[low]) - 1);
+                    freq.put(nums[low],freq.get(nums[low])- 1);
                 }
                 low++;
+                
             }
-
             high++;
         }
-
         return max_sum;
     }
 }
