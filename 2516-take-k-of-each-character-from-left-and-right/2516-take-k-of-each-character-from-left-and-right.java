@@ -28,3 +28,5 @@ class Solution {
         return min_time;
     }
 }
+//Time complexity  =o(n)
+//Space complexity = o(1)
