@@ -25,3 +25,5 @@ class Solution {
         }
     }
 }
+//time complexity = o(n)
+//space complexity = o(n)
