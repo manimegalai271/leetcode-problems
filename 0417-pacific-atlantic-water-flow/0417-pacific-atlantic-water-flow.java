@@ -1,40 +1,43 @@
-import java.util.*;
-
 class Solution {
-    int[][] directions = {{1,0},{-1,0},{0,1},{0,-1}};
-    public List<List<Integer>> pacificAtlantic(int[][] heights) {
-        int m = heights.length, n = heights[0].length;
-        boolean[][] pacific = new boolean[m][n];
-        boolean[][] atlantic = new boolean[m][n];
-
-        // Pacific: top row & left column
-        for (int i = 0; i < m; i++) dfs(heights, pacific, i, 0);
-        for (int j = 0; j < n; j++) dfs(heights, pacific, 0, j);
-
-        // Atlantic: bottom row & right column
-        for (int i = 0; i < m; i++) dfs(heights, atlantic, i, n - 1);
-        for (int j = 0; j < n; j++) dfs(heights, atlantic, m - 1, j);
-
+    int dir[][] = {{0,1}, {0,-1}, {1,0}, {-1,0}};
+    public List<List<Integer>> pacificAtlantic(int[][] matrix) {
         List<List<Integer>> res = new ArrayList<>();
-        for (int i = 0; i < m; i++) {
-            for (int j = 0; j < n; j++) {
-                if (pacific[i][j] && atlantic[i][j]) {
-                    res.add(Arrays.asList(i, j));
+        if(matrix == null || matrix.length == 0 || matrix[0].length == 0) 
+            return res;
+        
+        int row = matrix.length, col = matrix[0].length;
+        boolean[][] pacific = new boolean[row][col];
+        boolean[][] atlantic = new boolean[row][col];
+        
+        //DFS
+        for(int i = 0; i < col; i++){
+            dfs(matrix, 0, i, Integer.MIN_VALUE, pacific);
+            dfs(matrix, row-1, i, Integer.MIN_VALUE, atlantic);
+        }
+        for(int i = 0; i < row; i++){
+            dfs(matrix, i, 0, Integer.MIN_VALUE, pacific);
+            dfs(matrix, i, col-1, Integer.MIN_VALUE, atlantic);
+        }
+        
+        //preparing the result
+        for(int i = 0; i < row; i++){
+            for(int j = 0; j < col; j++) {
+                if(pacific[i][j] && atlantic[i][j]) {
+                    res.add(Arrays.asList(i,j));
                 }
             }
         }
+        
         return res;
     }
-
-    private void dfs(int[][] h, boolean[][] visited, int i, int j) {
-        visited[i][j] = true;
-        for (int[] d : directions) {
-            int x = i + d[0], y = j + d[1];
-            if (x >= 0 && y >= 0 && x < h.length && y < h[0].length &&
-                !visited[x][y] && h[x][y] >= h[i][j]) {
-                dfs(h, visited, x, y);
-            }
+    
+    public void dfs(int[][] matrix, int i, int j, int prev, boolean[][] ocean){
+        if(i < 0 || i >= ocean.length || j < 0 || j >= ocean[0].length) return;
+        if(matrix[i][j] < prev || ocean[i][j]) return;
+        ocean[i][j] = true;
+        for(int[] d : dir){
+            dfs(matrix, i+d[0], j+d[1], matrix[i][j], ocean);
         }
+        
     }
 }
-//tc -o(m*n)
