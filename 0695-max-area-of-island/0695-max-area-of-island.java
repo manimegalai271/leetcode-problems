@@ -29,3 +29,5 @@ class Solution {
         +dfs(grid,i-1,j);//top
     }
 }
+//time complexity = o(m * n)
+//space complexity = o(m n)
