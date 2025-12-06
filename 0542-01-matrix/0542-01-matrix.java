@@ -19,7 +19,7 @@ class Solution {
         int[][] dir = {{1,0},{0,1},{-1,0},{0,-1}};
         while(!q.isEmpty())
         {
-            int[] a = q.poll(); //bacause FIFO rule is satisfied poll that why using poll
+            int[] a = q.poll(); //bacause FIFO rule is satisfied poll that why using poll.pop is LIFO
             int i = a[0];
             int j = a[1];
             
