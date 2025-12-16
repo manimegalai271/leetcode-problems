@@ -1,27 +1,25 @@
 class Solution {
     public int minAddToMakeValid(String s) {
-        int open = 0;
+        Stack<Character> stack = new Stack<>();
         int imbalance = 0;
         for(int i = 0;i < s.length();i++)
         {
             if(s.charAt(i) == '(')
             {
-                 open++;
+                stack.push('(');
             }
             else if(s.charAt(i) == ')')
             {
-                 if(open > 0)
-                 {
-                    open--;
-                 }
-                 else 
-                 {
+                if(stack.size() > 0)
+                {
+                    stack.pop();
+                }
+                else
+                {
                     imbalance++;
-                 }
+                }
             }
         }
-        return imbalance + open;
+        return stack.size() + imbalance;
     }
 }
-//Time complexity = o(n)
-//space complexity = o(1)
