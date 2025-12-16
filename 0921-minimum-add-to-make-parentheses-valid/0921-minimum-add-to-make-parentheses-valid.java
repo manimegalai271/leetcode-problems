@@ -23,3 +23,5 @@ class Solution {
         return imbalance + open;
     }
 }
+//Time complexity = o(n)
+//space complexity = o(1)
