@@ -35,3 +35,5 @@ class Solution {
         inorder(ans,root.right);
     }
 }
+//Time complexity = o(n)
+//space complexity = o(n)
