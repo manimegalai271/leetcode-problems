@@ -12,3 +12,5 @@ class Solution {
         return ans.get(k-1);
     }
 }
+//Time complexity = o(N * M log(N * M))
+//space complexity = O(N * M)
