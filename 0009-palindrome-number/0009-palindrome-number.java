@@ -1,22 +1,20 @@
 class Solution {
-    public boolean isPalindrome(int x) {
-        String str=String.valueOf(x);
-        int left=0;
-        int right=str.length()-1;
-        int flag=0;
-        while(left<=right)
-        {
-            if(str.charAt(left)==str.charAt(right))
-            {
+    public boolean isPalindrome(int n) {
+        StringBuilder sb = new StringBuilder(String.valueOf(n));
+         int left = 0;
+         int right = sb.length() - 1;
+         while(left < right)
+         {
+             if(sb.charAt(left) == sb.charAt(right))
+             {
                  left++;
                  right--;
-                 flag=1;
-            }
-            else 
-            {   
-                return false;
-            }
-        }
-        return true;
+             }
+             else
+             {
+                 return false;
+             }
+         }
+         return true;
     }
 }
