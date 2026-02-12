@@ -1,9 +1,25 @@
 class Solution {
     public int mySqrt(int x) {
-        for(long i = 1; i <= x; i++) {
-            if(i * i > x)
-                return (int)i - 1;
+        long left=1;
+        long right=x;
+        int ans=0;
+        while(left<=right)
+        {
+            long mid=(left+right)/2;
+            if(mid*mid==x)
+            {
+                return (int)mid;
+            }
+            else if(mid*mid>=x)
+            {
+                right=mid-1;
+            }
+            else if(mid*mid<=x)
+            {
+                left=mid+1;
+                ans=(int)mid;
+            }
         }
-        return x;
+        return (int)ans;
     }
 }
