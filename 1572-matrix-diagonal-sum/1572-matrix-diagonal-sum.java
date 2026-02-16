@@ -1,34 +1,20 @@
 class Solution {
     public int diagonalSum(int[][] mat) {
-        int left_diagonal = 0;
-        int s = 0;
-        int e = mat.length - 1;
-        int right_diagonal = 0;
-
-        for(int i = 0; i < mat.length; i++)
-        {
-            for(int j = 0; j < mat[0].length; j++)
-            {
-                if(i == j)
-                {
-                    left_diagonal += mat[i][j];
-                }
-
-                if(s != e && i == s && j == e) 
-                {
-                    right_diagonal += mat[s][e];
-                     s++;
-                     e--;
-                   
-                }
-                if(s == e)
-                {
-                    s++;
-                    e--;
-                }
-               
-            }
+        int sum1=0;
+        int sum2=0;
+        int n=mat.length;
+        for(int i=0;i<mat.length;i++)
+        {  
+                sum1+=mat[i][i];
+                sum2+=mat[i][n-1-i];
+            
         }
-        return left_diagonal + right_diagonal;
+        int sums=sum1+sum2;
+        if(n%2==1)
+        {
+            return sums-=mat[n/2][n/2];
+        }
+        return sums;
+
     }
 }
