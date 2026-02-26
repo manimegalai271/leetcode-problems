@@ -1,26 +1,28 @@
 class Solution {
-    public String countAndSay(int n) {        
-        String s="1";
-        for(int i=1;i<n;i++)
-        {
-            int j=0;
-            String next="";
-            while(j<s.length())
+    public String countAndSay(int n) {
+        String s = "1";
+        int count = 1;
+        for(int i = 1;i < n;i++)
+        {   
+            String curr = "";
+            int j = 1;
+            
+            for(j = 1;j < s.length();j++)
             {
-                int count=1;
-                while(j<s.length()-1 && s.charAt(j)==s.charAt(j+1))
-                {   
-
-                    count++;
-                    j++;
+                if(s.charAt(j) != s.charAt(j - 1))
+                {
+                    curr += "" + count + "" + s.charAt(j - 1);
+                    count = 1;
                 }
-                next += Integer.toString(count) + s.charAt(j);
-
-                j++;
+                else 
+                {
+                    count++;
+                }
             }
-            s=next;
+            curr +=  "" + count + "" + s.charAt(j - 1);
+            s = curr;
+            count = 1; 
         }
         return s;
-        
     }
 }
