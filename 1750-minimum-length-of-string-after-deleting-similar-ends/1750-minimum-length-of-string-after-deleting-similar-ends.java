@@ -5,29 +5,44 @@ class Solution {
         {
             return len;
         }
+        char[] ch = s.toCharArray();
         int left = 0;
-        int right = len - 1;
-        while(right < s.length() && left < right)
-        {   
-            if(s.charAt(left) != s.charAt(right))
+        int right = ch.length - 1;
+        while(right < ch.length && left < right)
+        {
+            if(ch[left] != ch[right])
             {
                 break;
             }
-            while(left < right && right < s.length() && s.charAt(left) == s.charAt(left + 1))
+            int ls = left;
+            while(left < right && left < ch.length  && ch[left] == ch[left + 1])
             {
                 left++;
             }
-            while(left < right && right < s.length() && s.charAt(right) == s.charAt(right - 1))
+            int rs = right;
+            while(left < right && right < ch.length && ch[right] == ch[right - 1])
             {
                 right--;
+            }
+            for(int i = ls;i <= left;i++)
+            {
+                ch[i] = '@';
+            }
+            for(int i = rs;i >= right;i--)
+            {
+                ch[i] = '@';
             }
             left++;
             right--;
         }
-        if(left > right)
+        int ans = 0;
+        for(int i = 0;i < ch.length;i++)
         {
-            return 0;
+            if(ch[i] != '@')
+            {
+                ans++;
+            }
         }
-        return right - left + 1;
+        return ans;
     }
 }
