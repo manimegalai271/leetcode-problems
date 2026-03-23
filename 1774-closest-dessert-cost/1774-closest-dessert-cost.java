@@ -1,29 +1,25 @@
 class Solution {
     public int closestCost(int[] baseCosts, int[] toppingCosts, int target) {
-
         int closest = Integer.MAX_VALUE;
-
-        for (int base : baseCosts) {
-            // ✅ store the result
-            closest = find(toppingCosts, 0, base, target, closest);
+        for(int base:baseCosts)
+        {
+            closest =  close(closest,base,0,toppingCosts,target);
         }
-
         return closest;
     }
-
-    public int find(int[] topping, int i, int cost, int target, int closest) {
-
-        if (Math.abs(cost - target) < Math.abs(closest - target) ||
-           (Math.abs(cost - target) == Math.abs(closest - target) && cost < closest)) {
-            closest = cost;
+    public int close(int closes,int cost,int i,int[] toppingCosts,int target)
+    {
+        if(Math.abs(cost - target) < Math.abs(closes - target) ||(Math.abs(cost - target) == Math.abs(closes - target) && cost < closes))
+        {
+            closes = cost;
         }
+        if(i == toppingCosts.length)return closes;
 
-        if (i == topping.length) return closest;
+        closes = close(closes,cost,i+1,toppingCosts,target);
+        closes = close(closes,cost+toppingCosts[i],i+1,toppingCosts,target);
+        closes = close(closes,cost+toppingCosts[i] * 2,i+1,toppingCosts,target);
 
-        closest = find(topping, i + 1, cost, target, closest);
-        closest = find(topping, i + 1, cost + topping[i], target, closest);
-        closest = find(topping, i + 1, cost + 2 * topping[i], target, closest);
-
-        return closest;
+        return closes;
+        
     }
 }
