@@ -4,24 +4,24 @@ class Solution {
         {
             return Math.max(arr[0],arr[1]);
         }
-        int maxwinner = arr[0] > arr[1]?arr[0]:arr[1];
-        int maxconsecutive = 0;
+        int max_count = arr[0] > arr[1]?arr[0]:arr[1];
+        int count = 0;
         for(int i = 1;i < arr.length;i++)
         {
-            if(maxwinner > arr[i])
+            if(max_count > arr[i])
             {
-               maxconsecutive++;
+                count++;
             }
-            else 
+            else
             {
-                maxwinner = arr[i];
-                maxconsecutive = 1;
+                max_count = arr[i];
+                count = 1;
             }
-            if(maxconsecutive == k)
+            if(count == k)
             {
-                return maxwinner;
+                return max_count;
             }
         }
-        return maxwinner;
+        return max_count;
     }
 }
