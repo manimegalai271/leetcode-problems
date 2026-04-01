@@ -17,7 +17,7 @@ class Solution {
          return closest;
     }
     public int closestCost(int[] baseCosts, int[] toppingCosts, int target) {
-        int closest = Integer.MAX_VALUE;
+        int closest = 0;
         for(int base:baseCosts)
         {
             closest = costt(base,closest,0,toppingCosts,target);
