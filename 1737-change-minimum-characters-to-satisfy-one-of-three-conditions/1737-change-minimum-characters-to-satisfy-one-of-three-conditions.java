@@ -16,18 +16,18 @@ class Solution {
         int m = b.length();
         int min = Integer.MAX_VALUE;
         for(int i = 0;i < 25;i++)
-        {   
+        {
             sum1 += freqa[i];
             sum2 += freqb[i];
-            min = Math.min(min,sum1-sum2+m);
-            min = Math.min(min,sum2-sum1+n);
-            
+            min = Math.min(min,sum1 - sum2 + m);
+            min = Math.min(min,sum2 - sum1 + n);
+
         }
         int max = Integer.MIN_VALUE;
-        for(int i=0;i < 26;i++)
+        for(int i = 0;i < 26;i++)
         {
-           max = Math.max(freqa[i]+freqb[i],max);
+            max = Math.max(max,freqa[i]+freqb[i]);
         }
-        return Math.min(min,m+n-max);
+        return Math.min(min,n+m-max);
     }
 }
