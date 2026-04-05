@@ -1,27 +1,25 @@
 class Solution {
-    public int costt(int cost,int closest,int i,int[] toppingCosts,int target)
+    public int closestCost(int[] baseCosts, int[] toppingCosts, int target) {
+        int closest = Integer.MIN_VALUE;
+        for(int cost:baseCosts)
+        {
+            closest = closestt(cost,0,toppingCosts,target,closest);
+        }
+        return closest;
+    }
+    public int closestt(int cost,int i,int[] toppingCosts,int target,int closest)
     {
-        if (Math.abs(cost - target) < Math.abs(closest - target) ||
-           (Math.abs(cost - target) == Math.abs(closest - target) && cost < closest)) {
+        if(Math.abs(cost - target) < Math.abs(closest - target) || (Math.abs(cost - target) == Math.abs(closest - target) && cost < closest))
+        {
             closest = cost;
         }
-         if(i == toppingCosts.length)
-         {
-             return closest;
-         }
-
-         closest = costt(cost,closest,i+1,toppingCosts,target);
-         closest = costt(cost+toppingCosts[i],closest,i+1,toppingCosts,target);
-         closest = costt(cost+(toppingCosts[i] * 2),closest,i+1,toppingCosts,target);
-
-         return closest;
-    }
-    public int closestCost(int[] baseCosts, int[] toppingCosts, int target) {
-        int closest = 0;
-        for(int base:baseCosts)
+        if(i == toppingCosts.length)
         {
-            closest = costt(base,closest,0,toppingCosts,target);
+            return closest;
         }
+        closest = closestt(cost,i + 1,toppingCosts,target,closest);
+        closest = closestt(cost + toppingCosts[i],i + 1,toppingCosts,target,closest);
+        closest = closestt(cost + (toppingCosts[i] * 2),i + 1,toppingCosts,target,closest);
         return closest;
     }
 }
