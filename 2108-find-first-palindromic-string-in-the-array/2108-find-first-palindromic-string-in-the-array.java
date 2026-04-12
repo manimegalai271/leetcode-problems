@@ -1,26 +1,21 @@
 class Solution {
     public String firstPalindrome(String[] words) {
-        for(String word:words)
+        for(String s:words)
         {
             int left = 0;
-            int right = word.length() - 1;
-            boolean flag = true;
-            while(left <= right)
+            int right = s.length() - 1;
+            while(left < right)
             {
-                if(word.charAt(left) != word.charAt(right))
-                {   
-                    flag = false;
+                if(s.charAt(left) != s.charAt(right))
+                {
                     break;
                 }
-                else 
-                {
-                    left++;
-                    right--;
-                }
+                left++;
+                right--;
             }
-            if(flag)
+            if(left >= right)
             {
-                return word;
+                return s;
             }
         }
         return "";
