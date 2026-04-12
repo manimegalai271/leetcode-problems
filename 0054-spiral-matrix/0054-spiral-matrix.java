@@ -4,11 +4,10 @@ class Solution {
         int sc = 0;
         int er = mat.length - 1;
         int ec = mat[0].length - 1;
-        int count = (er+1) * (ec+1);
         List<Integer> ans = new ArrayList<>();
         while(sr <= er && sc <= ec)
         {
-            for(int i = sr;i <= ec;i++)
+            for(int i = sc;i <= ec;i++)
             {
                 ans.add(mat[sr][i]);
             }
@@ -18,25 +17,23 @@ class Solution {
                 ans.add(mat[i][ec]);
             }
             ec -= 1;
-            for(int i = ec;i >= sc;i--)
-            {   
-                if(ans.size() == count)
-                {
-                    break;
-                }
-                ans.add(mat[er][i]);
+            if(sr <= er)
+            {
+               for(int i = ec;i >= sc;i--)
+               {
+                 ans.add(mat[er][i]);
+               }
+            er -= 1;   
             }
-            er -= 1;
-            for(int i = er;i >= sr;i--)
-            {   
-                if(ans.size() == count)
-                {
-                    break;
-                }
-                ans.add(mat[i][sc]);
+            if(sc <= ec)
+            {
+               for(int i = er;i >= sr;i--)
+               {
+                 ans.add(mat[i][sc]);
+               }   
+               sc++;
             }
         }
         return ans;
-        
     }
 }
