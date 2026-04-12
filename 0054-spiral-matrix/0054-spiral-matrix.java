@@ -1,39 +1,42 @@
 class Solution {
-    public List<Integer> spiralOrder(int[][] matrix) {
-        int rowstart = 0;
-        int rowend = matrix.length;
-        int colstart = 0;
-        int colend = matrix[0].length;
-        List<Integer> list=new ArrayList<>();
-        while(rowstart < rowend && colstart < colend)
+    public List<Integer> spiralOrder(int[][] mat) {
+        int sr = 0;
+        int sc = 0;
+        int er = mat.length - 1;
+        int ec = mat[0].length - 1;
+        int count = (er+1) * (ec+1);
+        List<Integer> ans = new ArrayList<>();
+        while(sr <= er && sc <= ec)
         {
-            for(int i=colstart;i<colend;i++)
+            for(int i = sr;i <= ec;i++)
             {
-                list.add(matrix[rowstart][i]);
+                ans.add(mat[sr][i]);
             }
-            rowstart+=1;
-            for(int i=rowstart;i<rowend;i++)
+            sr += 1;
+            for(int i = sr;i <= er;i++)
             {
-                list.add(matrix[i][colend-1]);
+                ans.add(mat[i][ec]);
             }
-            colend--;
-            if(rowstart < rowend)
-            {
-            for(int i=colend-1;i>=colstart;i--)
-            {
-                list.add(matrix[rowend-1][i]);
+            ec -= 1;
+            for(int i = ec;i >= sc;i--)
+            {   
+                if(ans.size() == count)
+                {
+                    break;
+                }
+                ans.add(mat[er][i]);
             }
-            rowend--;
-            }
-            if(colstart < colend)
-            {
-            for(int i=rowend-1;i>=rowstart;i--)
-            {
-                list.add(matrix[i][colstart]);
-            }
-            colstart++;
+            er -= 1;
+            for(int i = er;i >= sr;i--)
+            {   
+                if(ans.size() == count)
+                {
+                    break;
+                }
+                ans.add(mat[i][sc]);
             }
         }
-        return list;
+        return ans;
+        
     }
 }
