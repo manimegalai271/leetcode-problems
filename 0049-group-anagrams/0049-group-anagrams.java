@@ -1,40 +1,28 @@
 class Solution {
-    public boolean check_anagrams(String s1,String s2)
-    {
-        int[] freq = new int[26];
-        if(s1.length() != s2.length())return false;
-        for(int i = 0;i < s1.length();i++)
-        {
-            freq[s1.charAt(i) - 'a']++;
-            freq[s2.charAt(i) - 'a']--;
-        }
-        for(int i = 0;i < 26;i++)
-        {
-            if(freq[i] != 0)
-            {
-                return false;
-            }
-        }
-        return true;
-    }
     public List<List<String>> groupAnagrams(String[] strs) {
-        boolean[] visited = new boolean[strs.length];
-        List<List<String>> ans =  new ArrayList<>();
-        for(int i = 0;i < strs.length;i++)
+        List<List<String>> ans = new ArrayList<>();
+        int[] prime = {2,3,5,7,11,13,17,19,23,29,31,37,41,43,47,53,59,61,67,71,73,79,83,89,97,101};
+        Map<Integer,List<String>> map = new HashMap<>();
+        for(String str:strs)
         {   
-            if(visited[i])continue;
-            List<String> a = new ArrayList<>();
-            a.add(strs[i]);
-            visited[i] = true;
-            for(int j = i + 1;j < strs.length;j++)
+            int mul = 1;
+            for(int i = 0;i < str.length();i++)
             {
-                if(!visited[j] && check_anagrams(strs[i],strs[j]))
-                {
-                    a.add(strs[j]);
-                    visited[j] = true;
-                }
+                mul *= prime[str.charAt(i) - 'a'];
             }
-            ans.add(a);
+            if(map.containsKey(mul))
+            {
+               map.get(mul).add(str);
+            }
+            else 
+            {
+                map.put(mul,new ArrayList<>());
+                map.get(mul).add(str);
+            }
+        }
+        for(List<String> l:map.values())
+        {
+            ans.add(l);
         }
         return ans;
     }
